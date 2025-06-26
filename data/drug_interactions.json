@@ -1,4 +1,3 @@
-# genix_alz/data/drug_interactions.json
 {
   "APOE": {
     "Warfarin": 0.18,

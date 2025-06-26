@@ -2,6 +2,7 @@
 from fpdf import FPDF
 import base64
 import matplotlib.pyplot as plt
+from tempfile import NamedTemporaryFile
 import numpy as np
 import io
 
@@ -17,7 +18,7 @@ class ClinicalReportGenerator:
         
         # the header
         pdf.set_font('Arial', 'B', 16)
-        pdf.cell(0, 10, 'AlzGen Insight - Alzheimer\'s Genetic Risk Report', 0, 1, 'C')
+        pdf.cell(0, 10, 'genix_alz - Alzheimer\'s Genetic Risk Report', 0, 1, 'C')
         pdf.ln(10)
         
         # the patient info
@@ -35,8 +36,11 @@ class ClinicalReportGenerator:
         
         # risk visualization
         self._generate_risk_chart()
-        img = self._plot_to_base64()
-        pdf.image(img, x=50, w=110)
+        with NamedTemporaryFile(suffix=".png") as tmpfile:
+            plt.savefig(tmpfile.name)
+            plt.close()
+            pdf.image(tmpfile.name, x=50, w=110)
+        
         pdf.ln(5)
         
         # the drug interactions
@@ -46,10 +50,10 @@ class ClinicalReportGenerator:
             pdf.set_font('Arial', '', 12)
             for warning in self.drug['warnings']:
                 pdf.set_text_color(255, 0, 0)
-                pdf.cell(0, 10, f"• {warning}", 0, 1)
+                pdf.cell(0, 10, f"* {warning}", 0, 1)
             for rec in self.drug['recommendations']:
                 pdf.set_text_color(0, 100, 0)
-                pdf.cell(0, 10, f"• {rec}", 0, 1)
+                pdf.cell(0, 10, f"* {rec}", 0, 1)
             pdf.set_text_color(0, 0, 0)
         
         # clinical recommendations
@@ -70,7 +74,7 @@ class ClinicalReportGenerator:
             actions.append("Eligible for prevention trials")
         
         for action in actions:
-            pdf.cell(0, 10, f"• {action}", 0, 1)
+            pdf.cell(0, 10, f"* {action}", 0, 1)
         
         # saving the output
         pdf.output(output_path)
@@ -83,7 +87,10 @@ class ClinicalReportGenerator:
         colors = ['green', 'yellow', 'orange', 'red']
         
         current_risk = self.risk['adjusted_risk']
-        bar_idx = next(i for i, v in enumerate(values) if current_risk <= v)
+        bar_idx = next((i for i, v in enumerate(values) if current_risk <= v), None)
+        if bar_idx is None:
+            # Handle the case where current_risk is higher than all values
+            bar_idx = len(values) - 1  # or any default safe index
         
         plt.bar(groups, values, color=colors, alpha=0.3)
         plt.bar(groups[bar_idx], current_risk, color=colors[bar_idx])

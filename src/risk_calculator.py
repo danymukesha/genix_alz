@@ -41,10 +41,13 @@ class PolygenicRiskEngine:
         print("Training risk model on synthetic cohort...")
         model = RandomForestClassifier(n_estimators=100, random_state=42)
         calibrated = CalibratedClassifierCV(model, cv=3)
+        feature_names = list(ALZ_GENES.keys())
         # In production: Replace with real ADNI/UKB data
         X = np.random.rand(1000, len(ALZ_GENES))
+        X_df = pd.DataFrame(X, columns=feature_names)
         y = np.random.randint(0, 2, 1000)
-        calibrated.fit(X, y)
+        calibrated.fit(X_df, y)
+        os.makedirs('models', exist_ok=True)
         joblib.dump(calibrated, 'models/risk_model.pkl')
         return calibrated
     
@@ -54,7 +57,7 @@ class PolygenicRiskEngine:
         X = pd.DataFrame([{
             gene: ALZ_GENES[gene].get(genotype.get(gene, ''), 0.0)
             for gene in ALZ_GENES
-        }])
+        }], columns=list(ALZ_GENES.keys()))
         
         # here we calculate risk
         proba = self.model.predict_proba(X)[0][1]
