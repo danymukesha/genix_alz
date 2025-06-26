@@ -9,7 +9,7 @@ and evidence-based clinical recommendations.
 
 It is designed for usability and deployment in research or clinical settings, `genix_alz` offers a scalable, 
 explainable, and data-driven approach to personalized AD prevention and decision support. 
-It also can be easily deployed via Docker, and supports synthetic and real-world data formats (ADNI, UK Biobank).
+It also can be easily deployed via Docker, and supports other various data formats (e.g.:ADNI, UK Biobank).
 
 
 > Note: This project is =under active development-. We are currently working on integrating patient datasets, 
