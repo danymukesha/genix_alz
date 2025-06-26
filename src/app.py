@@ -51,7 +51,6 @@ with tabs[0]:
     st.sidebar.subheader("💊 Current Medications")
     selected_medications = st.sidebar.multiselect("Select medications", medications_list)
 
-    # Run assessment
     if st.sidebar.button("🧾 Generate Assessment"):
         risk_engine = PolygenicRiskEngine(model_path='models/risk_model.pkl', drug_rules_path='data/drug_interactions.json')
         drug_checker = PharmacogenomicsAnalyzer(rules_path='data/drug_interactions.json')
@@ -59,7 +58,6 @@ with tabs[0]:
         risk_result = risk_engine.calculate_score(genotype=genotype, age_group=age_group, medications=selected_medications)
         drug_result = drug_checker.check_interactions(genotype=genotype, medications=selected_medications)
 
-        # Display results
         st.subheader("📊 Assessment Summary")
         st.metric("Lifetime Alzheimer's Risk", f"{risk_result['adjusted_risk']:.1f}%", risk_result["risk_category"])
 
