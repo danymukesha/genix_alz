@@ -1,0 +1,18 @@
+# genix_alz/data/drug_interactions.json
+{
+  "APOE": {
+    "Warfarin": 0.18,
+    "Simvastatin": 0.12,
+    "alternatives": ["Rivaroxaban", "Pravastatin"]
+  },
+  "CLU": {
+    "Estradiol": 0.15,
+    "alternatives": ["Raloxifene"]
+  },
+  "CR1": {
+    "NSAIDs": -0.10
+  },
+  "BIN1": {
+    "Anticholinergics": 0.20
+  }
+}
