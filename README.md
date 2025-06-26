@@ -12,7 +12,7 @@ explainable, and data-driven approach to personalized AD prevention and decision
 It also can be easily deployed via Docker, and supports other various data formats (e.g.:ADNI, UK Biobank).
 
 
-> Note: This project is =under active development-. We are currently working on integrating patient datasets, 
+> Note: This project is under active development. We are currently working on integrating patient datasets, 
 > expanding the gene panel, and improving FHIR/EHR interoperability for clinical production use.
 > Currently, the large datasets (ADNI, UK Biobank) are being integrated and use to refine the predictive model
 > for production-grade accuracy and regulatory readiness.
