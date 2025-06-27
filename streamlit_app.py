@@ -66,7 +66,7 @@ with tabs[0]:
     ----
     """)
     st.info("""
-    This project is developed and maintained by **Dany Mukesha**.  
+    This project is developed and maintained by **Dany Mukesha** for his portuguese friend.  
     Contributions from clinicians, researchers, and developers are welcome.
 
     💡 Want to add features? Join the project? Share data or models?  
