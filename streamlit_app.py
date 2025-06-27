@@ -147,7 +147,7 @@ with tabs[1]:
     Genetic predisposition plays a critical role in AD risk, with well-established susceptibility genes such as **APOE**, **CLU**, **PICALM**, and others contributing to lifetime risk.
 
     This tool integrates **polygenic risk scoring**, combining the effects of multiple genetic variants validated by large-scale genome-wide association studies (GWAS) ([Lambert et al., 2013](https://www.nature.com/articles/ng.2802)) and subsequent meta-analyses, to provide an individualized risk estimate.  
-    In addition, it assesses pharmacogenomic interactions, recognizing that certain medications can modulate AD risk pathways based on patient genotype, in line with emerging research on gene-drug interactions affecting neurodegeneration risk ([Sabbagh et al., 2020](https://doi.org/10.2147/CIA.S214423)).
+    In addition, it assesses pharmacogenomic interactions, recognizing that certain medications can modulate AD risk pathways based on patient genotype, in line with emerging research on gene-drug interactions affecting neurodegeneration risk ([Tolar et al., 2020](https://doi.org/10.1186/s13195-020-00663-w)).
 
     **Key features:**
     - Incorporates patient age, genetic profile, and medication usage to adjust risk estimates.
